@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register account</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="text" id="topbanner">
+    <a href="CMS.php">
+        <h3>CMS-Prosjektoppgave</h3>
+    </a>
+
+</div>
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                <label>Username:</label>
+            </td>
+            <td>
+                <input type="text" name="username" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>E-mail:</label>
+            </td>
+            <td>
+                <input type="email" name="email" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Password:</label>
+            </td>
+            <td>
+                <input type="password" name="password" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Re-enter password:</label>
+            </td>
+            <td>
+                <input type="password" name="passwordverify" required />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="submit" value="Register">
+            </td>
+        </tr>
+    </table>
+</form>
+
+<p>If you already have an account you can <a href="login.php">log in here</a></p>
+
+</body>
+</html>

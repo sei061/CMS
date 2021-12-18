@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log in</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="text" id="topbanner">
+    <a href="CMS.php">
+        <h3>CMS-Prosjektoppgave</h3>
+    </a>
+</div>
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                <label>Username:</label>
+            </td>
+            <td>
+                <input type="text" name="username" value="{{ username }}"required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Password:</label>
+            </td>
+            <td>
+                <input type="password" name="password" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="login" value="Log in">
+            </td>
+        </tr>
+    </table>
+</form>
+<p>If you don't have an account you can <a href="register.php">register here</a></p>
+
+</body>
+</html>

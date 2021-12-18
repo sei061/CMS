@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload page</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="text" id="topbanner">
+    <a href="CMS.php">
+        <h3>CMS-Prosjektoppgave</h3>
+    </a>
+    <a href="register.php">Log in / register</a>
+</div>
+{% if loggedin %}
+    <p>Upload a file: </p>
+    <form enctype="multipart/form-data" method="post">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <input type="file" name="file">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Name:</label>
+                </td>
+                <td>
+                    <input type="text" name="name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>description</label>
+                </td>
+                <td>
+                    <input type="text" name="description">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Tags</label>
+                </td>
+                <td>
+                    <input type="text" name="tags">
+                </td>
+            <tr>
+                <td colspan="2">
+                    Tags are separated with semicolon (tag1;tag2;tag3)
+                </td>
+            <tr>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Post">
+                </td>
+            </tr>
+        </table>
+    </form>
+{% else %}
+    <p>log in to post</p>
+{% endif %}
+</body>
+</html>

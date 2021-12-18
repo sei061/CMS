@@ -1,0 +1,65 @@
+#topbanner{
+    background-color: #fff;
+    font-family: Arial;
+
+}
+
+
+.text {
+    text-align: center;
+    margin-top: 4px;
+}
+.topleft {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+}
+.topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+textarea {
+    width: 400px;
+    height: 80px;
+    font-family: Arial;
+    background-color: #fff;
+    resize: none;
+}
+input[type=submit] {
+    width: 70px;
+    height: 20px;
+    background-color: dimgray;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    font-weight: 400;
+    cursor: pointer;
+}
+button[type=submit] {
+    width: 70px;
+    height: 20px;
+    background-color: dimgray;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    font-weight: 400;
+    cursor: pointer
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+*{
+    box-sizing: border-box;
+}

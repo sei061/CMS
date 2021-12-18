@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="text" id="topbanner">
+    <a href="CMS.php">
+        <h3>CMS-Prosjektoppgave</h3>
+    </a>
+</div>
+</div>
+<div class="page-header">
+    {% block body %}
+
+    <h1>Your information</h1>
+    <h2>User: <b>{{ username }}</b> </h2>
+    <h2>Role: Admin</h2>
+</div>
+<p>
+    <a href="CMS.php">Back to main page</a> <br>
+    <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
+</p>
+{% endblock %}
+</body>
+</html>
+

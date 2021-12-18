@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ doc.filename }}</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="text" id="topbanner">
+    <a href="CMS.php">
+        <h3>CMS-Prosjektoppgave</h3>
+    </a>
+    <a href="register.php">Log in / register</a>
+</div>
+<a href="CMS.php">Back to main page</a> <br>
+{% if doc %}
+    {% if loggedin == doc.FK_User %}
+        <a href="CMS.php?id={{ id }}&delete=true">Delete post</a>
+    {% endif %}
+    {% if doc.filetype == 'image/jpeg' or doc.filetype == 'image/pjpeg' or doc.filetype == 'image/png' or doc.filetype == 'image/gif' %}
+        <h3>{{ doc.filename }}</h3>
+        <div>
+            <img src="view.php?id={{ id }}" width="30%"/>
+            <p>{{ doc.descrption }}</p>
+            <a>Tags:</a>
+            <p>{% for tag in tags %}
+                    {{ tag.tagtext }}
+                {% endfor %}</p>
+        </div>
+    {% elseif doc.filetype == 'video/mp4' or doc.filetype == 'video/webm' or doc.filetype == 'video/ogg' %}
+        <h3>{{ doc.filename }}</h3>
+        <video width="25%" height="100%" controls>
+            <source src="view.php?id={{ id }}" type="{{ doc.filetype }}">
+        </video>
+    {% else %}
+        <p>{{ doc.filecode }}</p>
+        <a href="view.php?viewId={{ id }}">{{ doc.filename }}</a>
+    {% endif %}
+    {% if loggedin %}
+        <form method='POST'>
+            <input type='hidden' name='FK_User' value='Anonymous'>
+            <textarea placeholder="leave a comment here" type="text" name="comment"></textarea><br>
+            <input type='submit' name='commentSubmit' value="Post">
+        </form>
+    {% else %}
+        <a href="register.php"><p>log in to leave a comment</p></a>
+    {% endif %}
+    {% for c in comments %}
+        &nbsp;
+    <form method='POST'>
+        <input type="hidden" name="delete" value='{{ c.PK_Comment }}'>
+        <input type="hidden" name="username" value='{{ c.username }}'>
+        <br>
+        <button type="submit" name="commentDelete">Delete</button>
+    </form>
+    {{ c.username }}  {{ c.datecreated }}
+    <br> {{ c.text }} <br>
+
+    {% endfor %}
+{% endif %}
+
+
+</body>
+</html>

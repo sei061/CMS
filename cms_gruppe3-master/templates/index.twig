@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="text" id="topbanner">
+    <a href="CMS.php">
+        <h3>CMS-Prosjektoppgave</h3>
+    </a>
+    <a href="register.php">Login / register</a>
+</div>
+<div class="topright">
+    <form method="post">
+        <label>Search for documents or pictures: <br>
+            <input type="text" name="searchstring">
+        </label>
+        <input type="submit" name="search" value="search">
+    </form>
+</div>
+<div class="topleft">
+    <form action="CMS.php?cat={{ uploadcat }}" method="post">
+        <label>Add a new folder within this folder: <br>
+            <input type="text" name="foldername" placeholder="name">
+        </label>
+        <input type="submit" name="add" value="add">
+    </form>
+</div>
+<div class="row">
+    <div class="column">
+        <a href="upload.php?cat={{ uploadcat }}"><p>Press here to upload a file to this folder</p></a>
+{% if search %}
+    {% if folders %}
+        {% for folder in folders %}
+            {% if folder.catalogname == search %}
+                <div id="folder">
+                    <a href="CMS.php?cat={{ folder.PK_Catalog }}">
+                        <img src="images/folder.jpg" width="5%">
+                        <p>{{ folder.catalogname }}</p>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if docs %}
+        {% for doc in docs %}
+            {% if doc.filename == search %}
+                <div>
+                    {% if doc.filetype == 'image/jpeg' or doc.filetype == 'image/pjpeg' or doc.filetype == 'image/png' or doc.filetype == 'image/gif' %}
+                        <a href="CMS.php?viewId={{ doc.PK_Document }}">
+                            <img src="view.php?id={{ doc.PK_Document }}" width="10%"/>
+                        </a>
+                    {% elseif doc.filetype == 'video/mp4' or doc.filetype == 'video/webm' or doc.filetype == 'video/ogg' %}
+                        <a href="CMS.php?viewId={{ doc.PK_Document }}">
+                            {{ doc.filename }}
+                        </a>
+                    {% else %}
+                        <a href="CMS.php?viewId={{ doc.PK_Document }}">{{ doc.filename }}</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for doc in byTags %}
+            <div>
+                {% if doc.filetype == 'image/jpeg' or doc.filetype == 'image/pjpeg' or doc.filetype == 'image/png' or doc.filetype == 'image/gif' %}
+                    <a href="CMS.php?viewId={{ doc.FK_Document }}">
+                        <img src="view.php?id={{ doc.FK_Document }}" width="10%"/>
+                    </a>
+                {% elseif doc.filetype == 'video/mp4' or doc.filetype == 'video/webm' or doc.filetype == 'video/ogg' %}
+                    <a href="CMS.php?viewId={{ doc.FK_Document }}">
+                        {{ doc.filename }}
+                    </a>
+                {% else %}
+                    <a href="CMS.php?viewId={{ doc.FK_Document }}">{{ doc.filename }}</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% for doc in byDescription %}
+            <div>
+                {% if doc.filetype == 'image/jpeg' or doc.filetype == 'image/pjpeg' or doc.filetype == 'image/png' or doc.filetype == 'image/gif' %}
+                    <a href="CMS.php?viewId={{ doc.PK_Document }}">
+                        <img src="view.php?id={{ doc.PK_Document }}" width="10%"/>
+                    </a>
+                {% elseif doc.filetype == 'video/mp4' or doc.filetype == 'video/webm' or doc.filetype == 'video/ogg' %}
+                    <a href="CMS.php?viewId={{ doc.PK_Document }}">
+                        {{ doc.filename }}
+                    </a>
+                {% else %}
+                    <a href="CMS.php?viewId={{ doc.PK_Document }}">{{ doc.filename }}</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% else %}
+    {% if uploadcat > 1 %}
+        <a href="CMS.php?cat={{ supercat }}">back</a>
+    {% endif %}
+    {% if folders %}
+        {% for folder in folders %}
+            <div id="folder">
+                <a href="CMS.php?cat={{ folder.PK_Catalog }}">
+                    <img src="images/folder.jpg" width="5%">
+                    <p>{{ folder.catalogname }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="column">
+    {% endif %}
+    {% if docs %}
+        {% for doc in docs %}
+            <div>
+                {% if doc.filetype == 'image/jpeg' or doc.filetype == 'image/pjpeg' or doc.filetype == 'image/png' or doc.filetype == 'image/gif' %}
+                    <a href="CMS.php?viewId={{ doc.PK_Document }}">
+                        <img src="view.php?id={{ doc.PK_Document }}" width="10%"/>
+                    </a>
+                {% elseif doc.filetype == 'video/mp4' or doc.filetype == 'video/webm' or doc.filetype == 'video/ogg' %}
+                    <a href="CMS.php?viewId={{ doc.PK_Document }}">
+                        {{ doc.filename }}
+                    </a>
+                {% else %}
+                    <a href="CMS.php?viewId={{ doc.PK_Document }}">{{ doc.filename }}</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+    </div>
+</div>
+</body>
+</html>
